@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:lightgrey;
+    background-color:#f9f9f9;
 }
 
 pre+div.mermaid-loading {

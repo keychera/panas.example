@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css" title="default">
+</head>
+
+<body>
+    <h1> babashka + htmx + mermaid.js</h1>
+    <p> change the code and watch it live reloads!</p>
+
+    <div class="mermaid-container">
+        <pre class="mermaid">
+            graph LR
+            A --- B
+            B-->C[fa:fa-ban this is babashka]
+            B-->E[fa:fa-ban serving htmx]
+            B-->F[fa:fa-ban reloading mermaid.js rendered graph]
+            B-->D(fa:fa-spinner);
+        </pre>
+        <div class="mermaid-loading">
+            {% include "loading.svg" %}
+        </div>
+    </div>
+
+</body>
+
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.esm.min.mjs';
+
+    mermaid.initialize({ startOnLoad: false })
+    htmx.onLoad(content => {
+        if (content.tagName == "PRE" && content.classList.contains("mermaid")) {
+                const mermaidText = content.textContent
+                mermaid.render("any", mermaidText, svgCode => {
+                    content.outerHTML = svgCode
+                })
+            } else {
+                let diagrams = content.querySelectorAll("pre.mermaid")
+                if (diagrams.length > 0) {
+                    for (let idx = 0; idx < diagrams.length; idx++) {
+                        const element = diagrams[idx];
+                        const processed = element.getAttribute('data-processed') ?? false
+                        if (!processed) {
+                            const mermaidText = element.textContent
+                            mermaid.render("any", mermaidText, svgCode => {
+                                element.outerHTML = svgCode
+                            })
+                        }
+                    }
+                }
+            }
+    })
+</script>
+
+
+</html>

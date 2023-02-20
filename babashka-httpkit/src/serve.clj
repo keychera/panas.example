@@ -11,11 +11,15 @@
 (defn index [& _]
   (render-file "index.html" {}))
 
+(defn mermaid [& _]
+  (render-file "mermaid.html" {}))
+
 (defn your-router [req]
   (let [paths (some-> (:uri req) (str/split #"/") rest vec)
         verb (:request-method req)]
     (match [verb paths]
       [:get []] {:body (index)}
+      [:get ["mermaid"]] {:body (mermaid)}
       [:get ["css" "style.css"]] {:body (slurp (io/resource "style.css"))}
       :else {:status 404 :body "not found"})))
 

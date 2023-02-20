@@ -36,25 +36,25 @@
     mermaid.initialize({ startOnLoad: false })
     htmx.onLoad(content => {
         if (content.tagName == "PRE" && content.classList.contains("mermaid")) {
-                const mermaidText = content.textContent
-                mermaid.render("any", mermaidText, svgCode => {
-                    content.outerHTML = svgCode
-                })
-            } else {
-                let diagrams = content.querySelectorAll("pre.mermaid")
-                if (diagrams.length > 0) {
-                    for (let idx = 0; idx < diagrams.length; idx++) {
-                        const element = diagrams[idx];
-                        const processed = element.getAttribute('data-processed') ?? false
-                        if (!processed) {
-                            const mermaidText = element.textContent
-                            mermaid.render("any", mermaidText, svgCode => {
-                                element.outerHTML = svgCode
-                            })
-                        }
+            const mermaidText = content.textContent
+            mermaid.render("any", mermaidText, svgCode => {
+                content.outerHTML = svgCode
+            })
+        } else {
+            let diagrams = content.querySelectorAll("pre.mermaid")
+            if (diagrams.length > 0) {
+                for (let idx = 0; idx < diagrams.length; idx++) {
+                    const element = diagrams[idx];
+                    const processed = element.getAttribute('data-processed') ?? false
+                    if (!processed) {
+                        const mermaidText = element.textContent
+                        mermaid.render("any", mermaidText, svgCode => {
+                            element.outerHTML = svgCode
+                        })
                     }
                 }
             }
+        }
     })
 </script>
 

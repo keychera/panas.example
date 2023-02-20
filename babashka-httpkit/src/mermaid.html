@@ -12,8 +12,45 @@
 
 <body>
     <h1> This is mermaid.js + htmx </h1>
-    <p> change the code and watch it live reloads! </p>
-    
+    <p> change the code and watch it live reloads!</p>
+
+    <pre class="mermaid">
+        graph LR
+        A --- B
+        B-->C[fa:fa-ban hellooo]
+        B-->E[fa:fa-ban hello]
+        B-->D(fa:fa-spinner);
+    </pre>
+
 </body>
+
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.esm.min.mjs';
+
+    mermaid.initialize({ startOnLoad: false })
+    htmx.onLoad(content => {
+        if (content.tagName == "PRE" && content.classList.contains("mermaid")) {
+            const mermaidText = content.textContent
+            mermaid.render("any", mermaidText, svgCode => {
+                content.outerHTML = svgCode
+            })
+        } else {
+            let diagrams = content.querySelectorAll("pre.mermaid")
+            if (diagrams.length > 0) {
+                for (let idx = 0; idx < diagrams.length; idx++) {
+                    const element = diagrams[idx];
+                    const processed = element.getAttribute('data-processed') ?? false
+                    if (!processed) {
+                        const mermaidText = element.textContent
+                        mermaid.render("any", mermaidText, svgCode => {
+                            element.outerHTML = svgCode
+                        })
+                    }
+                }
+            }
+        }
+    })
+</script>
+
 
 </html>

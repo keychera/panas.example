@@ -8,6 +8,7 @@
     <title>htmx</title>
     <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
     <link rel="stylesheet" href="/css/htmx.css" type="text/css" title="default">
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
 </head>
 
 <body>
@@ -17,29 +18,29 @@
         </div>
         <aside class="sidebar">
             <div class="sidebar">
-                <button>Click To Edit</button>
-                <button>Bulk Update</button>
-                <button>Click To Load</button>
-                <button>Delete Row</button>
-                <button>Edit Row</button>
-                <button>Lazy Loading</button>
-                <button>Inline Validation</button>
-                <button>Infinite Scroll</button>
-                <button>Active Search</button>
-                <button>Progress Bar</button>
-                <button>Value Select</button>
-                <button>Animations</button>
-                <button>File Upload</button>
-                <button>Dialogs - Browser</button>
-                <button>Dialogs - UIKIt</button>
-                <button>Dialogs - Bootstrap</button>
-                <button>Dialogs - Custom</button>
-                <button>Tabs (Using HATEOAS)</button>
-                <button>Tabs (Using Hyperscript)</button>
-                <button>Keyboard Shortcuts</button>
-                <button>Sortable</button>
-                <button>Updating Other Content</button>
-                <button>Confirm</button>
+                <button hx-post="/htmx/click-to-edit" hx-target="#main">Click To Edit</button>
+                <button disabled>Bulk Update</button>
+                <button disabled>Click To Load</button>
+                <button disabled>Delete Row</button>
+                <button disabled>Edit Row</button>
+                <button disabled>Lazy Loading</button>
+                <button disabled>Inline Validation</button>
+                <button disabled>Infinite Scroll</button>
+                <button disabled>Active Search</button>
+                <button disabled>Progress Bar</button>
+                <button disabled>Value Select</button>
+                <button disabled>Animations</button>
+                <button disabled>File Upload</button>
+                <button disabled>Dialogs - Browser</button>
+                <button disabled>Dialogs - UIKIt</button>
+                <button disabled>Dialogs - Bootstrap</button>
+                <button disabled>Dialogs - Custom</button>
+                <button disabled>Tabs (Using HATEOAS)</button>
+                <button disabled>Tabs (Using Hyperscript)</button>
+                <button disabled>Keyboard Shortcuts</button>
+                <button disabled>Sortable</button>
+                <button disabled>Updating Other Content</button>
+                <button disabled>Confirm</button>
             </div>
             <div class="collapse-button" onclick="toggleCollapse()">
                 <button>></button>

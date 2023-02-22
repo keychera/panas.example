@@ -14,14 +14,14 @@ button {
 
 aside.sidebar {
     display: flex;
-    max-width: 18rem;
+    max-width: 20rem;
 }
 
 div.sidebar {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    max-width: 18rem;
+    max-width: 20rem;
     transition: max-width 0.2s ease-in-out;
 }
 

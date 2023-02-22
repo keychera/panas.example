@@ -21,7 +21,7 @@
     (match [verb paths]
       [:get []] {:body (index)}
       [:get ["mermaid"]] {:body (mermaid)}
-      [:get ["htmx" example]] (htmx/router example)
+      [_ ["htmx" example]] (htmx/router req example)
       [:get ["css" "htmx.css"]] {:body (slurp (io/resource "htmx/style.css"))}
       [:get ["css" "style.css"]] {:body (slurp (io/resource "style.css"))}
       :else {:status 404 :body "not found"})))

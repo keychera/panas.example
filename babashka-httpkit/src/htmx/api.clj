@@ -1,10 +1,12 @@
 (ns htmx.api
-  (:require [selmer.parser :refer [render-file]]))
+  (:require [clojure.core.match :refer [match]] 
+            [selmer.parser :refer [render-file]]))
 
 (defn htmx-index []
   {:body (render-file "htmx/index.html" {})})
 
-(defn router [example] 
-  (case example
-    "main" (htmx-index)
-    {:status 404 :body "htmx examples not found here"}))
+(defn router [req example] 
+  (let [verb (:request-method req)]
+    (match [verb example] 
+      [:get "main"] (htmx-index) 
+      :else {:status 404 :body "htmx example not found here"})))

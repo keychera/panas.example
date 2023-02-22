@@ -4,8 +4,8 @@
             [clojure.string :as str]
             [selmer.parser :refer [render-file]]))
 
-(defn htmx-index []
-  (render-file "htmx/index.html" {}))
+(defn htmx-index [main-div]
+  (render-file "htmx/index.html" {:render-main main-div}))
 
 (defn payload->map [req]
   (some-> req :body (io/reader :encoding "UTF-8") slurp
@@ -31,13 +31,21 @@
     (non-editable)))
 
 
+(defn part? [req] (= "p" (:query-string req)))
+
+(defn sidebar-route [partial? handler & args]
+  (if partial? 
+    (apply handler args)
+    (htmx-index (apply handler args))))
+
 ;; this is router under /htmx
 (defn router [req action]
-  (let [verb (:request-method req)]
+  (let [verb (:request-method req)
+        sidebar> (partial sidebar-route (part? req))]
     (match [verb action]
-      [:get ["examples"]] {:body (htmx-index)}
+      [:get ["examples"]] {:body (htmx-index nil)}
 
-      [:post ["click-to-edit"]] {:body (non-editable)}
+      [:get ["click-to-edit"]] {:body (sidebar> non-editable)}
       [:get ["contact" _]]  {:body (non-editable)}
       [:put ["contact" id]] {:body (put-contact id req)}
       [:get ["contact" _ "edit"]] {:body (editable)}

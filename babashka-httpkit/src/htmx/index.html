@@ -14,11 +14,11 @@
 <body>
     <div id="world">
         <div id="header">
-            <h1 >this is babashka + htmx</h1>
+            <h1><a href="/htmx/examples">this is babashka + htmx</a></h1>
         </div>
         <aside class="sidebar">
             <div class="sidebar">
-                <button hx-post="/htmx/click-to-edit" hx-target="#main">Click To Edit</button>
+                <button hx-get="/htmx/click-to-edit?p" hx-target="#main" hx-push-url="/htmx/click-to-edit">Click To Edit</button>
                 <button disabled>Bulk Update</button>
                 <button disabled>Click To Load</button>
                 <button disabled>Delete Row</button>
@@ -47,7 +47,11 @@
             </div>
         </aside>
         <div id="main">
-            Hello
+            {% if render-main %}
+            {{render-main|safe}}
+            {% else %}
+            Hello, try some examples!
+            {% endif %}
         </div>
     </div>
     

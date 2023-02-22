@@ -1,0 +1,5 @@
+{
+    "explorer.sortOrder": "type",
+    "html.format.wrapLineLength": 100,
+    "html.format.wrapAttributes": "preserve-aligned"
+}

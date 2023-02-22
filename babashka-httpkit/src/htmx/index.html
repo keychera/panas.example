@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,54 @@
     <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
     <link rel="stylesheet" href="/css/htmx.css" type="text/css" title="default">
 </head>
+
 <body>
-    <h1>this is htmx</h1>
-    <p>hello</p>
+    <div id="world">
+        <div id="header">
+            <h1 >this is babashka + htmx</h1>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar">
+                <button>Click To Edit</button>
+                <button>Bulk Update</button>
+                <button>Click To Load</button>
+                <button>Delete Row</button>
+                <button>Edit Row</button>
+                <button>Lazy Loading</button>
+                <button>Inline Validation</button>
+                <button>Infinite Scroll</button>
+                <button>Active Search</button>
+                <button>Progress Bar</button>
+                <button>Value Select</button>
+                <button>Animations</button>
+                <button>File Upload</button>
+                <button>Dialogs - Browser</button>
+                <button>Dialogs - UIKIt</button>
+                <button>Dialogs - Bootstrap</button>
+                <button>Dialogs - Custom</button>
+                <button>Tabs (Using HATEOAS)</button>
+                <button>Tabs (Using Hyperscript)</button>
+                <button>Keyboard Shortcuts</button>
+                <button>Sortable</button>
+                <button>Updating Other Content</button>
+                <button>Confirm</button>
+            </div>
+            <div class="collapse-button" onclick="toggleCollapse()">
+                <button>></button>
+            </div>
+        </aside>
+        <div id="main">
+            Hello
+        </div>
+    </div>
+    
+
+
 </body>
+<script>
+    function toggleCollapse() {
+        htmx.toggleClass(htmx.find("aside.sidebar"), "collapsed")
+    }
+</script>
+
 </html>

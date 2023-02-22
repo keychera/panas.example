@@ -1,3 +1,43 @@
-p {
-    padding: 2rem;
+button {
+    border-radius: 0;
 }
+
+#world {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+#header {
+    grid-row: span 1 / span 1;
+    grid-column: span 2/ span 2;
+}
+
+aside.sidebar {
+    display: flex;
+    max-width: 18rem;
+}
+
+div.sidebar {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-width: 18rem;
+    transition: max-width 0.2s ease-in-out;
+}
+
+.collapsed > .sidebar {
+    max-width: 0rem;
+    transition: max-width 0.2s ease-in-out;
+}
+
+.collapse-button {
+    display: flex;
+}
+
+#main {
+    padding-top: 1rem;
+    padding-left: 2rem;
+    width: 100%;
+}
+
+

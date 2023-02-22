@@ -2,6 +2,7 @@
   (:require [clojure.core.match :refer [match]]
             [clojure.java.io :as io]
             [clojure.string :as str]
+            [htmx.api :as htmx]
             [org.httpkit.server :refer [run-server]]
             [selmer.parser :refer [render-file]]))
 
@@ -20,6 +21,8 @@
     (match [verb paths]
       [:get []] {:body (index)}
       [:get ["mermaid"]] {:body (mermaid)}
+      [_ ["htmx" & action]] (htmx/router req action)
+      [:get ["css" "htmx.css"]] {:body (slurp (io/resource "htmx/style.css"))}
       [:get ["css" "style.css"]] {:body (slurp (io/resource "style.css"))}
       :else {:status 404 :body "not found"})))
 

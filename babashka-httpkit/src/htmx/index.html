@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htmx</title>
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <link rel="stylesheet" href="/css/htmx.css" type="text/css" title="default">
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+</head>
+
+<body>
+    <div id="world">
+        <div id="header">
+            <h1><a href="/htmx/examples">this is babashka + htmx</a></h1>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar">
+                <button hx-get="/htmx/click-to-edit?p" hx-target="#main" hx-push-url="/htmx/click-to-edit">Click To Edit</button>
+                <button disabled>Bulk Update</button>
+                <button disabled>Click To Load</button>
+                <button disabled>Delete Row</button>
+                <button disabled>Edit Row</button>
+                <button disabled>Lazy Loading</button>
+                <button disabled>Inline Validation</button>
+                <button disabled>Infinite Scroll</button>
+                <button disabled>Active Search</button>
+                <button disabled>Progress Bar</button>
+                <button disabled>Value Select</button>
+                <button disabled>Animations</button>
+                <button disabled>File Upload</button>
+                <button disabled>Dialogs - Browser</button>
+                <button disabled>Dialogs - UIKIt</button>
+                <button disabled>Dialogs - Bootstrap</button>
+                <button disabled>Dialogs - Custom</button>
+                <button disabled>Tabs (Using HATEOAS)</button>
+                <button disabled>Tabs (Using Hyperscript)</button>
+                <button disabled>Keyboard Shortcuts</button>
+                <button disabled>Sortable</button>
+                <button disabled>Updating Other Content</button>
+                <button disabled>Confirm</button>
+            </div>
+            <div class="collapse-button" onclick="toggleCollapse()">
+                <button>></button>
+            </div>
+        </aside>
+        <div id="main">
+            {% if render-main %}
+            {{render-main|safe}}
+            {% else %}
+            Hello, try some examples!
+            {% endif %}
+        </div>
+    </div>
+    
+
+
+</body>
+<script>
+    function toggleCollapse() {
+        htmx.toggleClass(htmx.find("aside.sidebar"), "collapsed")
+    }
+</script>
+
+</html>

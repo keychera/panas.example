@@ -5,19 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>panas.reload</title>
+    <title>draggable.js</title>
     <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
-    <link rel="stylesheet" href="/css/style.css" type="text/css" title="default">
+    <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.11/lib/draggable.bundle.js"></script>
 </head>
 
 <body>
-    <h1> Hello! </h1>
-    <p> check out some examples!</p>
     <ul>
-        <li><a href="/htmx">htmx examples</a></li>
-        <li><a href="/mermaid">mermaid.js</a></li>
-        <li><a href="/draggable">draggable.js</a></li>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
     </ul>
 </body>
+<script>
+    const swappable = new Draggable.Swappable(document.querySelectorAll('ul'), {
+      draggable: 'li'
+    });
+</script>
 
 </html>

@@ -15,12 +15,16 @@
 (defn mermaid [& _]
   (render-file "mermaid.html" {}))
 
+(defn draggable [& _]
+  (render-file "draggable.html" {}))
+
 (defn your-router [req]
   (let [paths (some-> (:uri req) (str/split #"/") rest vec)
         verb (:request-method req)]
     (match [verb paths]
       [:get []] {:body (index)}
       [:get ["mermaid"]] {:body (mermaid)}
+      [:get ["draggable"]] {:body (draggable)}
       [_ ["htmx" & action]] (htmx/router req action)
       [:get ["css" "htmx.css"]] {:body (slurp (io/resource "htmx/style.css"))}
       [:get ["css" "style.css"]] {:body (slurp (io/resource "style.css"))}

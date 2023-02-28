@@ -1,0 +1,20 @@
+<form id="checked-contacts">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      {{rows-body|safe}}
+    </tbody>
+  </table>
+</form>
+
+<div hx-include="#checked-contacts" hx-target="#tbody">
+  <button class="btn" hx-put="/htmx/activate">Activate</button>
+  <button class="btn" hx-put="/htmx/deactivate">Deactivate</button>
+</div>

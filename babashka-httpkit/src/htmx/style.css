@@ -25,7 +25,7 @@ div.sidebar {
     transition: max-width 0.2s ease-in-out;
 }
 
-.collapsed > .sidebar {
+.collapsed>.sidebar {
     max-width: 0rem;
     transition: max-width 0.2s ease-in-out;
 }
@@ -40,4 +40,14 @@ div.sidebar {
     width: 100%;
 }
 
+.htmx-settling tr.deactivate td {
+    background: lightcoral;
+}
 
+.htmx-settling tr.activate td {
+    background: darkseagreen;
+}
+
+tr td {
+    transition: all 1.2s;
+}

@@ -43,7 +43,7 @@
   (let [verb (:request-method req)
         sidebar> (partial sidebar-route (part? req))]
     (match [verb action]
-      [:get ["examples"]] {:body (htmx-index nil)}
+      [:get []] {:body (htmx-index nil)}
 
       [:get ["click-to-edit"]] {:body (sidebar> non-editable)}
       [:get ["contact" _]]  {:body (non-editable)}

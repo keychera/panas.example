@@ -14,11 +14,11 @@
 <body>
     <div id="world">
         <div id="header">
-            <h1><a href="/htmx/examples">this is babashka + htmx</a></h1>
+            <h1><a href="/htmx">this is babashka + htmx</a></h1>
         </div>
         <aside class="sidebar">
             <div class="sidebar">
-                <button hx-get="/htmx/click-to-edit" hx-target="#main" hx-push-url>Click To Edit</button>
+                <button hx-get="/htmx/click-to-edit" hx-target="#main" hx-push-url="true">Click To Edit</button>
                 <button disabled>Bulk Update</button>
                 <button disabled>Click To Load</button>
                 <button disabled>Delete Row</button>

@@ -16,10 +16,10 @@
                     :email "eive.chera@reality.me"}))
 
 (defn non-editable []
-  (render-file "htmx/click-to-edit/non-editable.html" @contact))
+  (render-file "htmx/01-click-to-edit/non-editable.html" @contact))
 
 (defn editable []
-  (render-file "htmx/click-to-edit/editable.html" @contact))
+  (render-file "htmx/01-click-to-edit/editable.html" @contact))
 
 (defn put-contact [id req]
   (let [payload (payload->map req)

@@ -31,10 +31,10 @@
     (non-editable)))
 
 
-(defn part? [req] (= "p" (:query-string req)))
+(defn part? [req] (get-in req [:headers "hx-request"]))
 
 (defn sidebar-route [partial? handler & args]
-  (if partial? 
+  (if partial?
     (apply handler args)
     (htmx-index (apply handler args))))
 

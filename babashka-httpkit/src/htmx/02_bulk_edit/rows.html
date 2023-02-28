@@ -1,10 +1,8 @@
-<tbody id="tbody">
-    {% for row in rows %}
-    <tr class="">
-        <td><input type='checkbox' name='ids' value='0'></td>
-        <td>{{row.name}}</td>
-        <td>{{row.email}}</td>
-        <td>{{row.status}}</td>
-    </tr>
-    {% endfor %}
-</tbody>
+{% for row in rows %}
+<tr class="{{row.toggle-class}}">
+    <td><input type='checkbox' name='ids' value='{{forloop.counter0}}'></td>
+    <td>{{row.name}}</td>
+    <td>{{row.email}}</td>
+    <td>{{row.status}}</td>
+</tr>
+{% endfor %}

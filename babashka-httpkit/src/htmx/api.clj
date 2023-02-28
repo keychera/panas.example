@@ -2,7 +2,7 @@
   (:require [clojure.core.match :refer [match]]
             [htmx.01-click-to-edit.api :refer [editable non-editable
                                                put-contact]]
-            [htmx.02-bulk-edit.api :refer [activate bulk-edit deactivate]]
+            [htmx.02-bulk-edit.api :refer [bulk-edit toggle-active]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -29,8 +29,8 @@
       [:get ["contact" _ "edit"]] {:body (editable)}
 
       [:get ["bulk-edit"]] {:body (sidebar> bulk-edit)}
-      [:put ["activate"]] {:body (activate req)}
-      [:put ["deactivate"]] {:body (deactivate req)} 
+      [:put ["activate"]] {:body (toggle-active req true)}
+      [:put ["deactivate"]] {:body (toggle-active req false)} 
 
 
       :else {:status 404 :body "htmx example not found here"})))

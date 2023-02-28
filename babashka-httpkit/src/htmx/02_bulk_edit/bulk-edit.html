@@ -1,4 +1,3 @@
-
 <form id="checked-contacts">
   <table>
     <thead>
@@ -9,7 +8,9 @@
         <th>Status</th>
       </tr>
     </thead>
-    {{rows-body|safe}}
+    <tbody id="tbody">
+      {{rows-body|safe}}
+    </tbody>
   </table>
 </form>
 

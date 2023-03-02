@@ -3,6 +3,7 @@
             [htmx.01-click-to-edit.api :refer [editable non-editable
                                                put-contact]]
             [htmx.02-bulk-edit.api :refer [bulk-edit toggle-active]]
+            [htmx.03-click-to-load.api :refer [click-to-load request-contacts]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -30,7 +31,9 @@
 
       [:get ["bulk-edit"]] {:body (sidebar> bulk-edit)}
       [:put ["activate"]] {:body (toggle-active req true)}
-      [:put ["deactivate"]] {:body (toggle-active req false)} 
+      [:put ["deactivate"]] {:body (toggle-active req false)}
 
+      [:get ["click-to-load"]] {:body (sidebar> click-to-load)}
+      [:get ["contacts"]] {:body (request-contacts req)} 
 
       :else {:status 404 :body "htmx example not found here"})))

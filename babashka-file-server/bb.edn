@@ -1,8 +1,8 @@
-{:paths ["src"]
- :tasks {panas.reload {:extra-deps {io.github.keychera/panas.reload {:git/sha "3cca3d5c3d17020bf4ee6cb100b1c1ae8f28793e"}}
+{:tasks {panas.reload {:extra-deps {io.github.keychera/panas.reload {:git/sha "3cca3d5c3d17020bf4ee6cb100b1c1ae8f28793e"}
+                                    io.github.keychera/http-server {:git/sha "23316dae80ab34f96276f5b261db39e1ae0c0912"}}
                        :requires ([panas.reload]
                                   [babashka.fs :as fs])
-                       :task (panas.reload/-main 'mod-http-server/router-on
+                       :task (panas.reload/-main 'babashka.http-server/router-on
                                                  {:port 42042}
                                                  {:watch-dir "assets"
                                                   :resolve-router (fn [r] (r (fs/path "assets")))})}}}

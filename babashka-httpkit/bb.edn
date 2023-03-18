@@ -1,5 +1,10 @@
 {:paths ["src"]
  :tasks {serve {:task serve/-main}
-         panas.reload {:extra-deps {io.github.keychera/panas.reload {:git/sha "23185ff18ea0d7fda44e6550b6f65b239e1e1dc0"}}
-                       :requires ([panas.reload] serve)
-                       :task (panas.reload/-main serve/your-router {:port 42042})}}}
+         panas.reload {:extra-deps {io.github.keychera/panas.reload {:git/sha "4df95dfe82a7873c914fb485a200f9d15833017b"}}
+                       :requires (panas.reload panas.default serve)
+                       :task (panas.reload/-main serve/your-router
+                                                 {:port 42042}
+                                                 {:reloadable? (every-pred (fn [req]
+                                                                             (let [{:strs [hx-target hx-request]} (:headers req)] 
+                                                                               (or (not hx-request) (= "main-body" hx-target))))
+                                                                           panas.default/reloadable?)})}}}

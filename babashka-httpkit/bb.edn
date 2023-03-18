@@ -1,6 +1,6 @@
 {:paths ["src"]
  :tasks {serve {:task serve/-main}
-         panas.reload {:extra-deps {io.github.keychera/panas.reload {:git/sha "4df95dfe82a7873c914fb485a200f9d15833017b"}}
+         panas.reload {:extra-deps {io.github.keychera/panas.reload {:git/sha "c875d4f019ab15052b034282a8a02c298c5ade10"}}
                        :requires (panas.reload panas.default serve)
                        :task (panas.reload/-main serve/your-router
                                                  {:port 42042}

@@ -9,7 +9,6 @@
 (defn htmx-index [main-div]
   (render-file "htmx/index.html" {:render-main main-div}))
 
-
 (defn part? [req] (get-in req [:headers "hx-request"]))
 
 (defn sidebar-route [partial? handler & args]

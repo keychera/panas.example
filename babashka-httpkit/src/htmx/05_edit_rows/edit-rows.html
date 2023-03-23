@@ -1,0 +1,12 @@
+<table class="table delete-row-example">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody hx-target="closest tr" hx-swap="outerHTML">
+        {{contacts|safe}}
+    </tbody>
+</table>

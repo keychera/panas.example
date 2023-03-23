@@ -3,8 +3,10 @@
             [htmx.01-click-to-edit.api :refer [editable-page non-editable-page
                                                put-contact]]
             [htmx.02-bulk-edit.api :refer [bulk-edit-page toggle-active]]
-            [htmx.03-click-to-load.api :refer [click-to-load-page request-contacts]]
+            [htmx.03-click-to-load.api :refer [click-to-load-page
+                                               request-contacts]]
             [htmx.04-delete-row.api :refer [delete-contact delete-row-page]]
+            [htmx.05-edit-rows.api :refer [edit-rows-page put-row row]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -34,9 +36,14 @@
       [:put ["deactivate"]] {:body (toggle-active req false)}
 
       [:get ["click-to-load"]] {:body (sidebar> click-to-load-page)}
-      [:get ["contacts"]] {:body (request-contacts req)} 
+      [:get ["contacts"]] {:body (request-contacts req)}
 
-      [:get ["delete-row-page"]] {:body (sidebar> delete-row-page)}
+      [:get ["delete-row"]] {:body (sidebar> delete-row-page)}
       [:delete ["contact" id]] {:body (delete-contact id)}
+
+      [:get ["edit-rows"]] {:body (sidebar> edit-rows-page)}
+      [:get ["ex5" "contact" id]] {:body (row id)}
+      [:put ["ex5" "contact" id]] {:body (put-row id req)}
+      [:get ["ex5" "contact" id "edit"]] {:body (row id :editable? true)}
 
       :else {:status 404 :body "htmx example not found here"})))

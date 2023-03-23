@@ -1,9 +1,13 @@
 (ns htmx.api
   (:require [clojure.core.match :refer [match]]
-            [htmx.01-click-to-edit.api :refer [editable non-editable
+            [htmx.01-click-to-edit.api :refer [editable-page non-editable-page
                                                put-contact]]
-            [htmx.02-bulk-edit.api :refer [bulk-edit toggle-active]]
-            [htmx.03-click-to-load.api :refer [click-to-load request-contacts]]
+            [htmx.02-bulk-edit.api :refer [bulk-edit-page toggle-active]]
+            [htmx.03-click-to-load.api :refer [click-to-load-page
+                                               request-contacts]]
+            [htmx.04-delete-row.api :refer [delete-contact delete-row-page]]
+            [htmx.05-edit-rows.api :refer [edit-rows-page put-row row]]
+            [htmx.06-lazy-loading.api :refer [hw lazy-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -23,16 +27,27 @@
     (match [verb action]
       [:get []] {:body (htmx-index nil)}
 
-      [:get ["click-to-edit"]] {:body (sidebar> non-editable)}
-      [:get ["contact" _]]  {:body (non-editable)}
+      [:get ["click-to-edit"]] {:body (sidebar> non-editable-page)}
+      [:get ["contact" _]]  {:body (non-editable-page)}
       [:put ["contact" id]] {:body (put-contact id req)}
-      [:get ["contact" _ "edit"]] {:body (editable)}
+      [:get ["contact" _ "edit"]] {:body (editable-page)}
 
-      [:get ["bulk-edit"]] {:body (sidebar> bulk-edit)}
+      [:get ["bulk-edit"]] {:body (sidebar> bulk-edit-page)}
       [:put ["activate"]] {:body (toggle-active req true)}
       [:put ["deactivate"]] {:body (toggle-active req false)}
 
-      [:get ["click-to-load"]] {:body (sidebar> click-to-load)}
-      [:get ["contacts"]] {:body (request-contacts req)} 
+      [:get ["click-to-load"]] {:body (sidebar> click-to-load-page)}
+      [:get ["contacts"]] {:body (request-contacts req)}
+
+      [:get ["delete-row"]] {:body (sidebar> delete-row-page)}
+      [:delete ["contact" id]] {:body (delete-contact id)}
+
+      [:get ["edit-rows"]] {:body (sidebar> edit-rows-page)}
+      [:get ["ex5" "contact" id]] {:body (row id)}
+      [:put ["ex5" "contact" id]] {:body (put-row id req)}
+      [:get ["ex5" "contact" id "edit"]] {:body (row id :editable? true)}
+
+      [:get ["lazy-loading"]] {:body (sidebar> lazy-page)}
+      [:get ["hw"]] {:body (hw)}
 
       :else {:status 404 :body "htmx example not found here"})))

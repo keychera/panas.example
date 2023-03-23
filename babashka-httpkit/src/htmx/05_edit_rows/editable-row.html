@@ -1,0 +1,12 @@
+<tr hx-trigger='cancel' class='editing' hx-get="/htmx/ex5/contact/{{id}}">
+    <td><input name='name' value='{{name}}'> </td>
+    <td><input name='email' value='{{email}}'> </td>
+    <td>
+        <button class="btn btn-danger" hx-get="/htmx/ex5/contact/{{id}}">
+            Cancel
+        </button>
+        <button class="btn btn-danger" hx-put="/htmx/ex5/contact/{{id}}" hx-include="closest tr">
+            Save
+        </button>
+    </td>
+</tr>

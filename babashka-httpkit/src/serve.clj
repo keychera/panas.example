@@ -24,6 +24,10 @@
       [_ ["htmx" & action]] (htmx/router req action)
       [:get ["css" "htmx.css"]] {:body (slurp (io/resource "htmx/style.css"))}
       [:get ["css" "style.css"]] {:body (slurp (io/resource "style.css"))}
+      [:get ["img" "hw.png"]] {:headers {"Content-Type" "image/png"}
+                               :body (io/file (io/resource "hw.png"))}
+      [:get ["img" "loading.svg"]] {:headers {"Content-Type" "image/svg+xml"}
+                                    :body (io/file (io/resource "loading.svg"))}
       :else {:status 404 :body "not found"})))
 
 

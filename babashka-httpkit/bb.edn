@@ -1,10 +1,12 @@
 {:paths ["src"]
  :tasks {serve {:task serve/-main}
-         panas.reload {:extra-deps {io.github.keychera/panas.reload {:git/sha "c875d4f019ab15052b034282a8a02c298c5ade10"}}
-                       :requires (panas.reload panas.default serve)
+         panas.reload {:extra-deps {io.github.keychera/panas.reload {:git/sha "b1c7fa854256007a511256c5c43f2ab45e41bd7a"}}
+                       :requires ([clojure.string :as str]
+                                  panas.reload panas.default serve)
                        :task (panas.reload/-main serve/your-router
                                                  {:port 42042}
-                                                 {:reloadable? (every-pred (fn [req]
-                                                                             (let [{:strs [hx-target hx-request]} (:headers req)] 
-                                                                               (or (not hx-request) (= "main-body" hx-target))))
+                                                 {:reloadable? (every-pred (fn [{uri :uri
+                                                                                 {:strs [hx-target hx-request]} :headers}]
+                                                                             (and (or (not hx-request) (= "main-body" hx-target))
+                                                                                  (not (str/includes? uri "img/"))))
                                                                            panas.default/reloadable?)})}}}

@@ -7,6 +7,7 @@
                                                request-contacts]]
             [htmx.04-delete-row.api :refer [delete-contact delete-row-page]]
             [htmx.05-edit-rows.api :refer [edit-rows-page put-row row]]
+            [htmx.06-lazy-loading.api :refer [hw lazy-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -45,5 +46,8 @@
       [:get ["ex5" "contact" id]] {:body (row id)}
       [:put ["ex5" "contact" id]] {:body (put-row id req)}
       [:get ["ex5" "contact" id "edit"]] {:body (row id :editable? true)}
+
+      [:get ["lazy-loading"]] {:body (sidebar> lazy-page)}
+      [:get ["hw"]] {:body (hw)}
 
       :else {:status 404 :body "htmx example not found here"})))

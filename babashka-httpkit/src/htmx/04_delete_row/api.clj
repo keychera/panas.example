@@ -7,8 +7,8 @@
                  4 {:name "Fuqua Tarkenton" :email "fuqua@tarkenton.org" :active? true}
                  5 {:name "Kim Yee" :email "kim@yee.org" :active? false}}))
 
-(defn delete-contact [idx]
-  (swap! rows dissoc (Integer/parseInt idx))
+(defn delete-contact [id]
+  (swap! rows dissoc (Integer/parseInt id))
   "")
 
 (defn delete-row-page []

@@ -20,6 +20,6 @@
     (Thread/sleep 1000) ;; so the loading shows
     (contacts page)))
 
-(defn click-to-load []
+(defn click-to-load-page []
   (render-file "htmx/03_click_to_load/load-rows.html"
                {:contacts-rows (contacts 1)}))

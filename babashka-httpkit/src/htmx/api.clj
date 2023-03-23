@@ -1,9 +1,9 @@
 (ns htmx.api
   (:require [clojure.core.match :refer [match]]
-            [htmx.01-click-to-edit.api :refer [editable non-editable
+            [htmx.01-click-to-edit.api :refer [editable-page non-editable-page
                                                put-contact]]
-            [htmx.02-bulk-edit.api :refer [bulk-edit toggle-active]]
-            [htmx.03-click-to-load.api :refer [click-to-load request-contacts]]
+            [htmx.02-bulk-edit.api :refer [bulk-edit-page toggle-active]]
+            [htmx.03-click-to-load.api :refer [click-to-load-page request-contacts]]
             [htmx.04-delete-row.api :refer [delete-contact delete-row-page]]
             [selmer.parser :refer [render-file]]))
 
@@ -24,16 +24,16 @@
     (match [verb action]
       [:get []] {:body (htmx-index nil)}
 
-      [:get ["click-to-edit"]] {:body (sidebar> non-editable)}
-      [:get ["contact" _]]  {:body (non-editable)}
+      [:get ["click-to-edit"]] {:body (sidebar> non-editable-page)}
+      [:get ["contact" _]]  {:body (non-editable-page)}
       [:put ["contact" id]] {:body (put-contact id req)}
-      [:get ["contact" _ "edit"]] {:body (editable)}
+      [:get ["contact" _ "edit"]] {:body (editable-page)}
 
-      [:get ["bulk-edit"]] {:body (sidebar> bulk-edit)}
+      [:get ["bulk-edit"]] {:body (sidebar> bulk-edit-page)}
       [:put ["activate"]] {:body (toggle-active req true)}
       [:put ["deactivate"]] {:body (toggle-active req false)}
 
-      [:get ["click-to-load"]] {:body (sidebar> click-to-load)}
+      [:get ["click-to-load"]] {:body (sidebar> click-to-load-page)}
       [:get ["contacts"]] {:body (request-contacts req)} 
 
       [:get ["delete-row-page"]] {:body (sidebar> delete-row-page)}

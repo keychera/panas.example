@@ -25,7 +25,7 @@
                             (map with-active-str)
                             (map-indexed (with-toggle-class-fn ids activate?)))})))
 
-(defn bulk-edit []
+(defn bulk-edit-page []
   (render-file "htmx/02_bulk_edit/bulk-edit.html" {:rows-body (rows-body)}))
 
 (defn toggle-active [req toggle]

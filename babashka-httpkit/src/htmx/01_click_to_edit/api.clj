@@ -6,10 +6,10 @@
 (def contact (atom {:first "Eive" :last "Chera"
                     :email "eive.chera@reality.me"}))
 
-(defn non-editable []
+(defn non-editable-page []
   (render-file "htmx/01_click_to_edit/non-editable.html" @contact))
 
-(defn editable []
+(defn editable-page []
   (render-file "htmx/01_click_to_edit/editable.html" @contact))
 
 (defn put-contact [id req]
@@ -19,4 +19,4 @@
                      :email (get payload "email")}]
     (println "putting new contact" id "\n:" new-contact)
     (reset! contact new-contact)
-    (non-editable)))
+    (non-editable-page)))

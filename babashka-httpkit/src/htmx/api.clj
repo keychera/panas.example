@@ -4,6 +4,7 @@
                                                put-contact]]
             [htmx.02-bulk-edit.api :refer [bulk-edit toggle-active]]
             [htmx.03-click-to-load.api :refer [click-to-load request-contacts]]
+            [htmx.04-delete-row.api :refer [delete-contact delete-row-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -34,5 +35,8 @@
 
       [:get ["click-to-load"]] {:body (sidebar> click-to-load)}
       [:get ["contacts"]] {:body (request-contacts req)} 
+
+      [:get ["delete-row-page"]] {:body (sidebar> delete-row-page)}
+      [:delete ["contact" id]] {:body (delete-contact id)}
 
       :else {:status 404 :body "htmx example not found here"})))

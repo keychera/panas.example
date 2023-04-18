@@ -8,6 +8,7 @@
             [htmx.04-delete-row.api :refer [delete-contact delete-row-page]]
             [htmx.05-edit-rows.api :refer [edit-rows-page put-row row]]
             [htmx.06-lazy-loading.api :refer [hw lazy-page]]
+            [htmx.07-inline-validation.api :refer [inline-page validate-email]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -49,5 +50,8 @@
 
       [:get ["lazy-loading"]] {:body (sidebar> lazy-page)}
       [:get ["hw"]] {:body (hw)}
+
+      [:get ["inline-validation"]] {:body (sidebar> inline-page)}
+      [:post ["contact" "email"]] {:body (validate-email req)}
 
       :else {:status 404 :body "htmx example not found here"})))

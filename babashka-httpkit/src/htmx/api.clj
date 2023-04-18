@@ -9,6 +9,8 @@
             [htmx.05-edit-rows.api :refer [edit-rows-page put-row row]]
             [htmx.06-lazy-loading.api :refer [hw lazy-page]]
             [htmx.07-inline-validation.api :refer [inline-page validate-email]]
+            [htmx.08-infinite-scroll.api :refer [infinite-contacts
+                                                 infinite-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -53,5 +55,8 @@
 
       [:get ["inline-validation"]] {:body (sidebar> inline-page)}
       [:post ["contact" "email"]] {:body (validate-email req)}
+
+      [:get ["infinite-scroll"]] {:body (sidebar> infinite-page)}
+      [:get ["contacts-infinite"]] {:body (infinite-contacts req)}
 
       :else {:status 404 :body "htmx example not found here"})))

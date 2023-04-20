@@ -1,6 +1,9 @@
 # Examples that uses [`panas.reload`][1]
 
-How to use
+Though this project has become where I experiment all sort of things with clojure and htmx
+
+
+## How to use
 
 ```
 cd <any-project-folder>

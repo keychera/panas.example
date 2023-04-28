@@ -11,7 +11,8 @@
             [htmx.07-inline-validation.api :refer [inline-page validate-email]]
             [htmx.08-infinite-scroll.api :refer [infinite-contacts
                                                  infinite-page]]
-            [htmx.09-active-search.api :refer [active-search search]]
+            [htmx.09-active-search.api :refer [active-search-page search]]
+            [htmx.10-progress-bar.api :refer [progress-bar-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -60,7 +61,9 @@
       [:get ["infinite-scroll"]] {:body (sidebar> infinite-page)}
       [:get ["contacts-infinite"]] {:body (infinite-contacts req)}
 
-      [:get ["active-search"]] {:body (sidebar> active-search)}
+      [:get ["active-search"]] {:body (sidebar> active-search-page)}
       [:post ["search"]] {:body (search req)}
+
+      [:get ["progress-bar"]] {:body (sidebar> progress-bar-page)}
 
       :else {:status 404 :body "htmx example not found here"})))

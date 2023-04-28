@@ -4,7 +4,7 @@
             [hiccup2.core :refer [html]]
             [selmer.parser :refer [render-file]]))
 
-(defn active-search []
+(defn active-search-page []
   (render-file "htmx/09_active_search/active-page.html" {}))
 
 ;; ChatGPT did the conversion from htmx example js script here! (but it gave up midway 😅)

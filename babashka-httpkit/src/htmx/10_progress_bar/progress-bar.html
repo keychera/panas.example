@@ -1,0 +1,9 @@
+<div hx-target="this"
+     hx-get="/htmx/job"
+     hx-trigger="load delay:600ms"
+     hx-swap="outerHTML">
+    <h3>Running</h3>
+    <div class="progress">
+        <div id="pb" class="progress-bar" style="width:{{percentage}}%"></div>
+    </div>
+</div>

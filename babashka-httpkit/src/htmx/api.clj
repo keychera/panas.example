@@ -12,7 +12,8 @@
             [htmx.08-infinite-scroll.api :refer [infinite-contacts
                                                  infinite-page]]
             [htmx.09-active-search.api :refer [active-search-page search]]
-            [htmx.10-progress-bar.api :refer [progress-bar-page]]
+            [htmx.10-progress-bar.api :refer [job progress-bar-page
+                                              progress-start]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -65,5 +66,7 @@
       [:post ["search"]] {:body (search req)}
 
       [:get ["progress-bar"]] {:body (sidebar> progress-bar-page)}
+      [:post ["progress-start"]] {:body (progress-start)}
+      [:get ["job"]] {:body (job)}
 
       :else {:status 404 :body "htmx example not found here"})))

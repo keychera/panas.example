@@ -12,4 +12,6 @@
 
 (defn job []
   (let [cur-progress (swap! progress-out-of-5 inc)]
-    (render-file "htmx/10_progress_bar/progress-bar.html" {:percentage (* (/ cur-progress 5) 100)})))
+    (if-not (= cur-progress 5)
+      (render-file "htmx/10_progress_bar/progress-bar.html" {:percentage (* (/ cur-progress 5) 100)})
+      (render-file "htmx/10_progress_bar/progress-restart.html" {}))))

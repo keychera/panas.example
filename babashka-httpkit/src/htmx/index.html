@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/htmx.css" type="text/css" title="default">
     <script src="https://unpkg.com/htmx.org@1.8.4"></script>
     <script src="https://unpkg.com/hyperscript.org@0.9.8"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.4/dist/ext/class-tools.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -28,9 +29,9 @@
                 <button hx-get="/htmx/lazy-loading" hx-target="#main-body" hx-push-url="true">Lazy Loading</button>
                 <button hx-get="/htmx/inline-validation" hx-target="#main-body" hx-push-url="true">Inline Validation</button>
                 <button hx-get="/htmx/infinite-scroll" hx-target="#main-body" hx-push-url="true">Infinite Scroll</button>
-                <button disabled>Active Search</button>
-                <button disabled>Progress Bar</button>
-                <button disabled>Value Select</button>
+                <button hx-get="/htmx/active-search" hx-target="#main-body" hx-push-url="true">Active Search</button>
+                <button hx-get="/htmx/progress-bar" hx-target="#main-body" hx-push-url="true">Progress Bar</button>
+                <button hx-get="/htmx/value-select" hx-target="#main-body" hx-push-url="true">Value Select</button>
                 <button disabled>Animations</button>
                 <button disabled>File Upload</button>
                 <button disabled>Dialogs - Browser</button>
@@ -48,7 +49,7 @@
                 <button>></button>
             </div>
         </aside>
-        <div id="main-body">
+        <div id="main-body" hx-ext="class-tools">
             {% if render-main %}
             {{render-main|safe}}
             {% else %}

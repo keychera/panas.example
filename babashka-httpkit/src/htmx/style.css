@@ -68,6 +68,7 @@ tr.htmx-swapping td {
 
 img {
     transition: opacity 300ms ease-in;
+    margin-bottom: 0rem;
 }
 
 /* 07 inline validation */
@@ -81,4 +82,9 @@ img {
 
 .valid input {
     box-shadow: 0 0 3px #36cc00;
+}
+
+/* 09 active search */
+.grayed {
+    color: gray;
 }

@@ -4,7 +4,7 @@
                        :requires ([clojure.string :as str]
                                   panas.reload panas.default serve)
                        :task (panas.reload/-main serve/your-router
-                                                 {:url "localhost" :port 42042}
+                                                 {:url "localhost" :port 4242}
                                                  {:reloadable? (every-pred (fn [{uri :uri
                                                                                  {:strs [hx-target hx-request]} :headers}]
                                                                              (and (or (not hx-request) (= "main-body" hx-target))

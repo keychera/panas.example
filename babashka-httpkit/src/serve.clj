@@ -2,7 +2,7 @@
   (:require [clojure.core.match :refer [match]]
             [clojure.java.io :as io]
             [clojure.string :as str]
-            [htmx.api :as htmx]
+            [htmx.routes :as htmx]
             [org.httpkit.server :refer [run-server]]
             [selmer.parser :refer [render-file]]))
 

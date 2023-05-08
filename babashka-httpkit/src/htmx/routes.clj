@@ -76,5 +76,6 @@
 
       [:get ["animations"]] {:body (sidebar> animations-page)}
       [:get ["colors"]] {:body (get-color req)}
+      [:delete ["fade_out_demo"]] {:body ""}
 
       :else {:status 404 :body "htmx example not found here"})))

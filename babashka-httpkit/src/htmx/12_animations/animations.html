@@ -10,4 +10,17 @@
          hx-get="/htmx/colors" hx-swap="outerHTML" hx-trigger="every 1s">
         Color Swap Demo
     </div>
+
+    <h4 id="throb-demo">Fade out</h4>
+    <style>
+        .fade-me-out.htmx-swapping {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+    </style>
+    <button class="fade-me-out"
+            hx-delete="/htmx/fade_out_demo"
+            hx-swap="outerHTML swap:1s">
+        Fade Me Out
+    </button>
 </div>

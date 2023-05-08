@@ -1,3 +1,13 @@
 <div>
-    Animations!
+    <h3>Animations!</h3>
+    <h4 id="throb-demo">Throb</h4>
+    <style>
+        .smooth {
+            transition: all 1s ease-in;
+        }
+    </style>
+    <div id="color-demo" class="smooth" style="color:red"
+         hx-get="/htmx/colors" hx-swap="outerHTML" hx-trigger="every 1s">
+        Color Swap Demo
+    </div>
 </div>

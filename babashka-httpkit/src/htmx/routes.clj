@@ -78,5 +78,7 @@
       [:get ["colors"]] {:body (get-color req)}
       [:delete ["fade_out_demo"]] {:body ""}
       [:post ["fade_in_demo"]] {:body (fade-in req)}
+      [:post ["req_in_flight"]] {:body (do (Thread/sleep 2000)
+                                           "Submitted!")}
 
       :else {:status 404 :body "htmx example not found here"})))

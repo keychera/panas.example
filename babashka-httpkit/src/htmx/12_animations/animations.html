@@ -27,16 +27,29 @@
     <h4 id="fade-in-demo">Fade in on addition</h4>
     <style>
         #fade-me-in.htmx-added {
-          opacity: 0;
+            opacity: 0;
         }
+
         #fade-me-in {
-          opacity: 1;
-          transition: opacity 1s ease-out;
+            opacity: 1;
+            transition: opacity 1s ease-out;
         }
-        </style>
-        <button id="fade-me-in"
-                hx-post="/htmx/fade_in_demo"
-                hx-swap="outerHTML settle:1s">
-                Fade Me In
-        </button>
+    </style>
+    <button id="fade-me-in"
+            hx-post="/htmx/fade_in_demo"
+            hx-swap="outerHTML settle:1s">
+        Fade Me In
+    </button>
+
+    <h4 id="request-in-flight-demo">Request in flight</h4>
+    <style>
+        form.htmx-request {
+            opacity: .5;
+            transition: opacity 300ms linear;
+        }
+    </style>
+    <form hx-post="/htmx/req_in_flight">
+        <label>Name:</label><input name="name" placeholder="write something here"><br />
+        <button>Submit</button>
+    </form>
 </div>

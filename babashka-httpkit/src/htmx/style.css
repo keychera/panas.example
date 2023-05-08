@@ -42,6 +42,14 @@ div.sidebar {
     width: 100%;
 }
 
+.divider {
+    height: 0.25rem;
+    width: 110%;
+    background-color: gray;
+    margin-top: 3rem;
+    opacity: .5;
+}
+
 /* 02 bulk edit */
 .htmx-settling tr.deactivate td {
     background: lightcoral;

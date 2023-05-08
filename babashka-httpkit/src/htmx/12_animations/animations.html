@@ -62,48 +62,19 @@
     <div class="divider"></div>
 
     <h4 id="class-tools-demo">Using the htmx class-tools Extension</h4>
-    <p class="grayed">not attempted yet since previously had issues with htmx/class-tools</p>
+    <p class="grayed">not attempted yet since previously we had issues with htmx/class-tools</p>
 
     <div class="divider"></div>
 
     <h4 id="view-transitions-demo">View Transition</h4>
-    <p class="grayed">need chrome ver 111+ (doesn't work in my machine)</p>
-    <style>
-        @keyframes fade-in {
-          from { opacity: 0; }
-        }
-     
-        @keyframes fade-out {
-          to { opacity: 0; }
-        }
-     
-        @keyframes slide-from-right {
-          from { transform: translateX(90px); }
-        }
-     
-        @keyframes slide-to-left {
-          to { transform: translateX(-90px); }
-        }
-     
-        .slide-it {
-          view-transition-name: slide-it;
-        }
-     
-        ::view-transition-old(slide-it) {
-          animation: 180ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-          600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
-        }
-        ::view-transition-new(slide-it) {
-          animation: 420ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-          600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
-        }
-     </style>
-     
-     
+    <p class="grayed">need chrome ver 111+, htmx 1.9.+</p>
+    
      <div class="slide-it">
         <h4>Initial Content</h4>
         <button hx-get="/htmx/new-content" hx-swap="innerHTML transition:true" hx-target="closest div">
           Swap It!
         </button>
      </div>
+
+     <div class="divider"></div>
 </div>

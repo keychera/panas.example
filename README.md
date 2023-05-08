@@ -6,8 +6,13 @@ Though this project has become where I experiment all sort of things with clojur
 ## How to use
 
 ```
-cd <any-project-folder>
-bb panas.reload
+bb --config <any-project-dir>/bb.edn panas.reload
+```
+
+for example, running babashka
+
+```
+bb --config babashka-httpkit/bb.edn panas.reload
 ```
 
 `babashka-httpkit` is an example project that:

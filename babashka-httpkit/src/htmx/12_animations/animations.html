@@ -23,4 +23,20 @@
             hx-swap="outerHTML swap:1s">
         Fade Me Out
     </button>
+
+    <h4 id="throb-demo">Fade in on addition</h4>
+    <style>
+        #fade-me-in.htmx-added {
+          opacity: 0;
+        }
+        #fade-me-in {
+          opacity: 1;
+          transition: opacity 1s ease-out;
+        }
+        </style>
+        <button id="fade-me-in"
+                hx-post="/htmx/fade_in_demo"
+                hx-swap="outerHTML settle:1s">
+                Fade Me In
+        </button>
 </div>

@@ -1,4 +1,4 @@
-(ns htmx.12-animations.api 
+(ns htmx.12-animations.api
   (:require [hiccup2.core :refer [html]]
             [selmer.parser :refer [render-file]]))
 
@@ -12,3 +12,6 @@
     (str (html [:div#color-demo.smooth {:style (str "color:" color)
                                         :hx-get "/htmx/colors" :hx-swap "outerHTML" :hx-trigger "every 1s"}
                 "Color Swap Demo"]))))
+
+(defn fade-in [_]
+  (str (html [:button#fade-me-in {:hx-post "/fade_in_demo" :hx-swap "outerHTML settle:1s"} "Fade Me In"])))

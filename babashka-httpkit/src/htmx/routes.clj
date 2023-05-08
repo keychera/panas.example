@@ -15,7 +15,8 @@
             [htmx.10-progress-bar.api :refer [job progress-bar-page
                                               progress-start]]
             [htmx.11-value-select.api :refer [models value-select-page]]
-            [htmx.12-animations.api :refer [animations-page fade-in get-color]]
+            [htmx.12-animations.api :refer [animations-page fade-in get-color
+                                            initial-content new-content]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -78,7 +79,8 @@
       [:get ["colors"]] {:body (get-color req)}
       [:delete ["fade_out_demo"]] {:body ""}
       [:post ["fade_in_demo"]] {:body (fade-in req)}
-      [:post ["req_in_flight"]] {:body (do (Thread/sleep 2000)
-                                           "Submitted!")}
+      [:post ["req_in_flight"]] {:body (do (Thread/sleep 2000) "Submitted!")}
+      [:get ["new-content"]] {:body (new-content req)}
+      [:get ["initial-content"]] {:body (initial-content req)}
 
       :else {:status 404 :body "htmx example not found here"})))

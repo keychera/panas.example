@@ -17,7 +17,7 @@
   (str (html [:button#fade-me-in {:hx-post "/fade_in_demo" :hx-swap "outerHTML settle:1s"} "Fade Me In"])))
 
 (defn new-content [_]
-  (str (html [:div.slide-it
+  (str (html [:div
               [:h4 "New Content"]
               [:button {:hx-get "/htmx/initial-content"
                         :hx-swap "innerHTML transition:true"
@@ -25,7 +25,7 @@
                "Restore It!"]])))
 
 (defn initial-content [_]
-  (str (html [:div.slide-it
+  (str (html [:div
               [:h4 "Initial Content"]
               [:button {:hx-get "/htmx/new-content"
                         :hx-swap "innerHTML transition:true"

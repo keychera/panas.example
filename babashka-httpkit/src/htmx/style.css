@@ -244,3 +244,15 @@ img {
 	0% {transform: scale(1);}
 	100% {transform: scale(0.9);}
 } 
+
+/* 18 tabs hateoas */
+.tab-list {
+    margin-bottom: 1rem;
+}
+
+.one-tab {
+    padding: 0.5rem;
+    margin: 1rem;
+    background-color: #57858d;
+    color: white;
+}

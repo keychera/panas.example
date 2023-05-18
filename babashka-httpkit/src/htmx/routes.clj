@@ -23,6 +23,7 @@
             [htmx.16-modal-bootstrap.api :refer [boostrap-modal
                                                  modal-bootstrap-page]]
             [htmx.17-modal-custom.api :refer [custom-modal modal-custom-page]]
+            [htmx.18-tabs-hateoas.api :refer [tabs tabs-hateoas-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -103,5 +104,11 @@
 
       [:get ["modal-custom"]] {:body (sidebar> modal-custom-page)}
       [:get ["custom-modal"]] {:body (custom-modal)}
+
+      [:get ["tabs-hateoas"]] {:body (sidebar> tabs-hateoas-page)}
+      [:get ["tab1"]] {:body (tabs 1)}
+      [:get ["tab2"]] {:body (tabs 2)}
+      [:get ["tab3"]] {:body (tabs 3)}
+
 
       :else {:status 404 :body "htmx example not found here"})))

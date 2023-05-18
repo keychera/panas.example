@@ -20,6 +20,8 @@
             [htmx.13-file-upload.api :refer [fake-upload file-upload-page]]
             [htmx.14-dialogs.api :refer [dialogs-page submit]]
             [htmx.15-modals-uikit.api :refer [modals-uikit-page uikit-modal]]
+            [htmx.16-modals-bootstrap.api :refer [boostrap-modal
+                                                  modals-bootstrap-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -94,5 +96,8 @@
 
       [:get ["modals-uikit"]] {:body (sidebar> modals-uikit-page)}
       [:get ["uikit-modal.html"]] {:body (uikit-modal)}
+
+      [:get ["modals-boostrap"]] {:body (sidebar> modals-bootstrap-page)}
+      [:get ["modal"]] {:body (boostrap-modal)}
 
       :else {:status 404 :body "htmx example not found here"})))

@@ -18,6 +18,7 @@
             [htmx.12-animations.api :refer [animations-page fade-in get-color
                                             initial-content new-content]]
             [htmx.13-file-upload.api :refer [fake-upload file-upload-page]]
+            [htmx.14-dialogs.api :refer [dialogs-page submit]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -84,7 +85,11 @@
       [:get ["new-content"]] {:body (new-content req)}
       [:get ["initial-content"]] {:body (initial-content req)}
 
-       [:get ["file-upload"]] {:body (sidebar> file-upload-page)}
-       [:post ["upload"]] {:body (fake-upload)}
+      [:get ["file-upload"]] {:body (sidebar> file-upload-page)}
+      [:post ["upload"]] {:body (fake-upload)}
+
+      [:get ["dialogs"]] {:body (sidebar> dialogs-page)}
+      [:post ["submit"]] {:body (submit req)}
+
 
       :else {:status 404 :body "htmx example not found here"})))

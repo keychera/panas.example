@@ -17,6 +17,7 @@
             [htmx.11-value-select.api :refer [models value-select-page]]
             [htmx.12-animations.api :refer [animations-page fade-in get-color
                                             initial-content new-content]]
+            [htmx.13-file-upload.api :refer [fake-upload file-upload-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -82,5 +83,8 @@
       [:post ["req_in_flight"]] {:body (do (Thread/sleep 2000) "Submitted!")}
       [:get ["new-content"]] {:body (new-content req)}
       [:get ["initial-content"]] {:body (initial-content req)}
+
+       [:get ["file-upload"]] {:body (sidebar> file-upload-page)}
+       [:post ["upload"]] {:body (fake-upload)}
 
       :else {:status 404 :body "htmx example not found here"})))

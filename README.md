@@ -6,14 +6,19 @@ Though this project has become where I experiment all sort of things with clojur
 ## How to use
 
 ```
-cd <any-project-folder>
-bb panas.reload
+bb --config <any-project-dir>/bb.edn panas.reload
+```
+
+for example, running babashka
+
+```
+bb --config babashka-httpkit/bb.edn panas.reload
 ```
 
 `babashka-httpkit` is an example project that:
 - uses [sakuracss](https://github.com/oxalorg/sakura)
 - contains [mermaid.js](https://mermaid.js.org/) example
-- contains (currently) 11 [htmx](https://htmx.org/examples/) examples, more will be added
+- contains (currently) 18 [htmx](https://htmx.org/examples/) examples, more will be added
 
 `babaskka-file-server` is an example project that extend [`babashka/http-server`][2] to serve static files with live reload. You can also uses the [bbin][3] alternative to serve static files
 

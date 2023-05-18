@@ -1,0 +1,80 @@
+<div>
+    <h3>Animations!</h3>
+    <h4 id="throb-demo">Throb</h4>
+    <style>
+        .smooth {
+            transition: all 1s ease-in;
+        }
+    </style>
+    <div id="color-demo" class="smooth" style="color:red"
+         hx-get="/htmx/colors" hx-swap="outerHTML" hx-trigger="every 1s">
+        Color Swap Demo
+    </div>
+
+    <div class="divider"></div>
+
+    <h4 id="fade-out-demo">Fade out</h4>
+    <style>
+        .fade-me-out.htmx-swapping {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+    </style>
+    <button class="fade-me-out"
+            hx-delete="/htmx/fade_out_demo"
+            hx-swap="outerHTML swap:1s">
+        Fade Me Out
+    </button>
+
+    <div class="divider"></div>
+
+    <h4 id="fade-in-demo">Fade in on addition</h4>
+    <style>
+        #fade-me-in.htmx-added {
+            opacity: 0;
+        }
+
+        #fade-me-in {
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+    </style>
+    <button id="fade-me-in"
+            hx-post="/htmx/fade_in_demo"
+            hx-swap="outerHTML settle:1s">
+        Fade Me In
+    </button>
+
+    <div class="divider"></div>
+
+    <h4 id="request-in-flight-demo">Request in flight</h4>
+    <style>
+        form.htmx-request {
+            opacity: .5;
+            transition: opacity 300ms linear;
+        }
+    </style>
+    <form hx-post="/htmx/req_in_flight">
+        <label>Name:</label><input name="name" placeholder="write something here"><br />
+        <button>Submit</button>
+    </form>
+
+    <div class="divider"></div>
+
+    <h4 id="class-tools-demo">Using the htmx class-tools Extension</h4>
+    <p class="grayed">not attempted yet since previously we had issues with htmx/class-tools</p>
+
+    <div class="divider"></div>
+
+    <h4 id="view-transitions-demo">View Transition</h4>
+    <p class="grayed">need chrome ver 111+, htmx 1.9.+</p>
+    
+     <div class="slide-it">
+        <h4>Initial Content</h4>
+        <button hx-get="/htmx/new-content" hx-swap="innerHTML transition:true" hx-target="closest div">
+          Swap It!
+        </button>
+     </div>
+
+     <div class="divider"></div>
+</div>

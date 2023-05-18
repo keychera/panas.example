@@ -15,6 +15,15 @@
             [htmx.10-progress-bar.api :refer [job progress-bar-page
                                               progress-start]]
             [htmx.11-value-select.api :refer [models value-select-page]]
+            [htmx.12-animations.api :refer [animations-page fade-in get-color
+                                            initial-content new-content]]
+            [htmx.13-file-upload.api :refer [fake-upload file-upload-page]]
+            [htmx.14-dialogs.api :refer [dialogs-page submit]]
+            [htmx.15-modal-uikit.api :refer [modal-uikit-page uikit-modal]]
+            [htmx.16-modal-bootstrap.api :refer [boostrap-modal
+                                                 modal-bootstrap-page]]
+            [htmx.17-modal-custom.api :refer [custom-modal modal-custom-page]]
+            [htmx.18-tabs-hateoas.api :refer [tabs tabs-hateoas-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -72,5 +81,34 @@
 
       [:get ["value-select"]] {:body (sidebar> value-select-page)}
       [:get ["models"]] {:body (models req)}
+
+      [:get ["animations"]] {:body (sidebar> animations-page)}
+      [:get ["colors"]] {:body (get-color req)}
+      [:delete ["fade_out_demo"]] {:body ""}
+      [:post ["fade_in_demo"]] {:body (fade-in req)}
+      [:post ["req_in_flight"]] {:body (do (Thread/sleep 2000) "Submitted!")}
+      [:get ["new-content"]] {:body (new-content req)}
+      [:get ["initial-content"]] {:body (initial-content req)}
+
+      [:get ["file-upload"]] {:body (sidebar> file-upload-page)}
+      [:post ["upload"]] {:body (fake-upload)}
+
+      [:get ["dialogs"]] {:body (sidebar> dialogs-page)}
+      [:post ["submit"]] {:body (submit req)}
+
+      [:get ["modal-uikit"]] {:body (sidebar> modal-uikit-page)}
+      [:get ["uikit-modal.html"]] {:body (uikit-modal)}
+
+      [:get ["modal-boostrap"]] {:body (sidebar> modal-bootstrap-page)}
+      [:get ["bootstrap-modal"]] {:body (boostrap-modal)}
+
+      [:get ["modal-custom"]] {:body (sidebar> modal-custom-page)}
+      [:get ["custom-modal"]] {:body (custom-modal)}
+
+      [:get ["tabs-hateoas"]] {:body (sidebar> tabs-hateoas-page)}
+      [:get ["tab1"]] {:body (tabs 1)}
+      [:get ["tab2"]] {:body (tabs 2)}
+      [:get ["tab3"]] {:body (tabs 3)}
+
 
       :else {:status 404 :body "htmx example not found here"})))

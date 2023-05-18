@@ -1,8 +1,8 @@
 <button 
-    hx-get="/htmx/modal" 
+    hx-get="/htmx/bootstrap-modal" 
     hx-target="#modals-here" 
     hx-trigger="click"
     class="btn btn-primary"
-    _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Open Bootstrap Modal</button>
+    _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Open a Bootstrap Modal</button>
 
 <div id="modals-here"></div>

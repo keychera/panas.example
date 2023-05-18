@@ -21,7 +21,8 @@
             [htmx.14-dialogs.api :refer [dialogs-page submit]]
             [htmx.15-modal-uikit.api :refer [modal-uikit-page uikit-modal]]
             [htmx.16-modal-bootstrap.api :refer [boostrap-modal
-                                                  modal-bootstrap-page]]
+                                                 modal-bootstrap-page]]
+            [htmx.17-modal-custom.api :refer [custom-modal modal-custom-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -98,6 +99,9 @@
       [:get ["uikit-modal.html"]] {:body (uikit-modal)}
 
       [:get ["modal-boostrap"]] {:body (sidebar> modal-bootstrap-page)}
-      [:get ["modal"]] {:body (boostrap-modal)}
+      [:get ["bootstrap-modal"]] {:body (boostrap-modal)}
+
+      [:get ["modal-custom"]] {:body (sidebar> modal-custom-page)}
+      [:get ["custom-modal"]] {:body (custom-modal)}
 
       :else {:status 404 :body "htmx example not found here"})))

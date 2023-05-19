@@ -1,0 +1,7 @@
+<div id="tabs" class="tab-list" hx-target="#tab-contents" _="on htmx:afterOnLoad take .selected for event.target">
+	<a hx-get="/htmx/tabc1" class="one-tab selected">Tab 1</a>
+	<a hx-get="/htmx/tabc2" class="one-tab">Tab 2</a>
+	<a hx-get="/htmx/tabc3" class="one-tab">Tab 3</a>
+</div>
+
+<div id="tab-contents" hx-get="/htmx/tabc1" hx-trigger="load"></div>

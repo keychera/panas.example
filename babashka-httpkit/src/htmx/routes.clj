@@ -24,6 +24,8 @@
                                                  modal-bootstrap-page]]
             [htmx.17-modal-custom.api :refer [custom-modal modal-custom-page]]
             [htmx.18-tabs-hateoas.api :refer [tabs tabs-hateoas-page]]
+            [htmx.19-tabs-hyperscript.api :refer [tab-contents
+                                                  tabs-hyperscript-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -110,5 +112,10 @@
       [:get ["tab2"]] {:body (tabs 2)}
       [:get ["tab3"]] {:body (tabs 3)}
 
+      [:get ["tabs-hyperscript"]] {:body (sidebar> tabs-hyperscript-page)}
+
+      [:get ["tabc1"]] {:body (tab-contents 1)}
+      [:get ["tabc2"]] {:body (tab-contents 2)}
+      [:get ["tabc3"]] {:body (tab-contents 3)}
 
       :else {:status 404 :body "htmx example not found here"})))

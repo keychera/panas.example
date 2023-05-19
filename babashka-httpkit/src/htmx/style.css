@@ -250,9 +250,20 @@ img {
     margin-bottom: 1rem;
 }
 
+
+
 .one-tab {
     padding: 0.5rem;
     margin: 1rem;
     background-color: #57858d;
     color: white;
+    border-radius: 1rem;
+}
+
+.selected {
+    background-color: white;
+    color: black;
+    border: #57858d;
+    border-style: solid;
+    border-width: 0.2rem;
 }

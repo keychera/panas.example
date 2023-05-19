@@ -24,6 +24,8 @@
                                                  modal-bootstrap-page]]
             [htmx.17-modal-custom.api :refer [custom-modal modal-custom-page]]
             [htmx.18-tabs-hateoas.api :refer [tabs tabs-hateoas-page]]
+            [htmx.19-5-tabs-like-these.api :refer [tab-like-this
+                                                   tabs-like-these]]
             [htmx.19-tabs-hyperscript.api :refer [tab-contents
                                                   tabs-hyperscript-page]]
             [selmer.parser :refer [render-file]]))
@@ -31,17 +33,18 @@
 (defn htmx-index [main-div]
   (render-file "htmx/index.html" {:render-main main-div}))
 
-(defn part? [req] (get-in req [:headers "hx-request"]))
+(defn partial? [req] (get-in req [:headers "hx-request"]))
 
-(defn sidebar-route [partial? handler & args]
-  (if partial?
+(defn sidebar-route [partial-req? handler & args]
+  (if partial-req?
     (apply handler args)
     (htmx-index (apply handler args))))
 
 ;; this is router under /htmx
 (defn router [req action]
   (let [verb (:request-method req)
-        sidebar> (partial sidebar-route (part? req))]
+        partial-req? (partial? req)
+        sidebar> (partial sidebar-route partial-req?)]
     (match [verb action]
       [:get []] {:body (htmx-index nil)}
 
@@ -118,4 +121,8 @@
       [:get ["tabc2"]] {:body (tab-contents 2)}
       [:get ["tabc3"]] {:body (tab-contents 3)}
 
+      [:get ["tabs-like-these"]] {:body (sidebar> tabs-like-these)}
+      [:get ["tab-like-this" i]] {:body (sidebar> tab-like-this partial-req? i)}
+
+      
       :else {:status 404 :body "htmx example not found here"})))

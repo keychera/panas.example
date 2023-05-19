@@ -14,6 +14,7 @@
     <script src="https://unpkg.com/hyperscript.org@0.9.8"></script>
     <script src="https://unpkg.com/htmx.org@1.9.2/dist/ext/class-tools.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </head>
 
 <body>
@@ -44,7 +45,7 @@
                 <button hx-get="/htmx/tabs-hyperscript">Tabs (Using Hyperscript)</button>
                 <button hx-get="/htmx/tabs-like-these">or Tabs like these...</button>
                 <button hx-get="/htmx/keyboard-shortcuts">Keyboard Shortcuts</button>
-                <button disabled>Sortable</button>
+                <button hx-get="/htmx/sortable">Sortable</button>
                 <button disabled>Updating Other Content</button>
                 <button disabled>Confirm</button>
             </div>
@@ -52,6 +53,18 @@
                 <button>></button>
             </div>
         </aside>
+        <script>
+            function initSortable() {
+                var sortables = document.querySelectorAll(".sortable");
+                for (var i = 0; i < sortables.length; i++) {
+                    var sortable = sortables[i];
+                    new Sortable(sortable, {
+                        animation: 150,
+                        ghostClass: 'blue-background-class'
+                    });
+                }
+            }
+        </script>
         <div id="main-body" hx-ext="class-tools">
             {% if render-main %}
             {{render-main|safe}}

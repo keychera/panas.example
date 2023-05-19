@@ -28,6 +28,7 @@
                                                    tabs-like-these]]
             [htmx.19-tabs-hyperscript.api :refer [tab-contents
                                                   tabs-hyperscript-page]]
+            [htmx.21-sortable.api :refer [items sortable-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -126,5 +127,8 @@
 
       [:get ["keyboard-shortcuts"]] {:body (sidebar> render-file "htmx/20_keyboard_shortcuts/keyboard-shortcuts-page.html" {})}
       [:post ["doit"]] {:body "Did it!"}
+
+      [:get ["sortable"]] {:body (sidebar> sortable-page)}
+      [:post ["items"]] {:body (items req)}
 
       :else {:status 404 :body "htmx example not found here"})))

@@ -250,8 +250,6 @@ img {
     margin-bottom: 1rem;
 }
 
-
-
 .one-tab {
     padding: 0.5rem;
     margin: 1rem;
@@ -263,6 +261,20 @@ img {
 .selected {
     background-color: white;
     color: black;
+    border: #57858d;
+    border-style: solid;
+    border-width: 0.2rem;
+}
+
+/* 21 sortable */
+
+.sortable-item {
+    cursor: grab;
+    user-select: none;
+    padding: 0.5rem;
+    width: fit-content;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
     border: #57858d;
     border-style: solid;
     border-width: 0.2rem;

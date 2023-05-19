@@ -1,0 +1,12 @@
+<form class="sortable" hx-post="/htmx/items"
+      hx-trigger="end" hx-target="#result">
+    <div class="htmx-indicator">Updating...</div>
+    <div class="sortable-item"><input type='hidden' name='item' value='1' />Item 1</div>
+    <div class="sortable-item"><input type='hidden' name='item' value='2' />Item 2</div>
+    <div class="sortable-item"><input type='hidden' name='item' value='3' />Item 3</div>
+    <div class="sortable-item"><input type='hidden' name='item' value='4' />Item 4</div>
+    <div class="sortable-item"><input type='hidden' name='item' value='5' />Item 5</div>
+</form>
+<div>last values</div>
+<div id="result"></div>
+<script defer>initSortable()</script>

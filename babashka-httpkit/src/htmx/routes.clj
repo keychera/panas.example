@@ -124,5 +124,7 @@
       [:get ["tabs-like-these"]] {:body (sidebar> tabs-like-these)}
       [:get ["tab-like-this" i]] {:body (sidebar> tab-like-this partial-req? i)}
 
-      
+      [:get ["keyboard-shortcuts"]] {:body (sidebar> render-file "htmx/20_keyboard_shortcuts/keyboard-shortcuts-page.html" {})}
+      [:post ["doit"]] {:body "Did it!"}
+
       :else {:status 404 :body "htmx example not found here"})))

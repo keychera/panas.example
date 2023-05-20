@@ -1,8 +1,9 @@
-<button 
-	id="showButton"
-	hx-get="/htmx/uikit-modal.html" 
-	hx-target="#modals-here" 
-	class="uk-button uk-button-primary" 
-	_="on htmx:afterOnLoad wait 10ms then add .uk-open to #modal">Open a UIkit Modal</button>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.17/dist/css/uikit.min.css" />
+<button
+		id="showButton"
+		hx-get="/htmx/uikit-modal.html"
+		hx-target="#modals-here"
+		class="uk-button uk-button-primary"
+		_="on htmx:afterOnLoad wait 10ms then add .uk-open to #modal">Open a UIkit Modal</button>
 
 <div id="modals-here"></div>

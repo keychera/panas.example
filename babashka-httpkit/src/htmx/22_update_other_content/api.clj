@@ -6,7 +6,7 @@
 (defn main-page []
   (render-file "htmx/22_update_other_content/main-page.html" {:i 1}))
 
-(def contacts (atom []))
+(defonce contacts (atom []))
 
 (defn solution [partial-req? i]
   (if partial-req?
@@ -19,9 +19,9 @@
            "file not found"))
     (render-file "htmx/22_update_other_content/main-page.html" {:i i})))
 
-(defmulti add-contact :i)
+(defmulti add-contact #(->> % :i (str "solution-") keyword))
 
-(defmethod add-contact "solution-1" [{:keys [req]}]
+(defmethod add-contact :solution-1 [{:keys [req]}]
   (let [{:strs [name email]} (payload->map req)]
     (swap! contacts conj {:name name :email email})
     (str (html [:div#table-and-form
@@ -34,6 +34,16 @@
                 [:h2 "Add A Contact"]
                 [:form {:hx-post "/htmx/update-other-content/solution/1/contacts"
                         :hx-target "#table-and-form"}
-                 [:label "Name" [:input {:name "name" :type "text" :required true}]]
-                 [:label "Email" [:input {:name "email" :type "email" :required true}]]
+                 [:label "Name" [:input {:name "name" :type "text"}]]
+                 [:label "Email" [:input {:name "email" :type "email"}]]
                  [:input {:type "submit" :value "Submit"}]]]))))
+
+(defmethod add-contact :solution-2 [{:keys [req]}]
+  (let [{:strs [name email]} (payload->map req)]
+    (swap! contacts conj {:name name :email email})
+    (str (html [:tbody {:hx-swap-oob "beforeend:#contacts-table"}
+                [:tr [:td name] [:td email]]])
+         (html [:form {:hx-post "/htmx/update-other-content/solution/2/contacts"}
+                [:label "Name" [:input {:name "name" :type "text"}]]
+                [:label "Email" [:input {:name "email" :type "email"}]]
+                [:input {:type "submit" :value "Submit"}]]))))

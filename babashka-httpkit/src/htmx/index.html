@@ -78,6 +78,7 @@
 
 </body>
 <script>
+    htmx.config.useTemplateFragments = true;
     function toggleCollapse() {
         htmx.toggleClass(htmx.find("aside.sidebar"), "collapsed")
     }

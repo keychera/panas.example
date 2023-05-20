@@ -1,5 +1,5 @@
 <div id="table-and-form">
-    <h2>Contacts</h2>
+    <h2>Contacts (solution 1)</h2>
     <table class="table">
         <thead>
             <tr>
@@ -27,11 +27,11 @@
     <form hx-post="/htmx/update-other-content/solution/1/contacts" hx-target="#table-and-form">
         <label>
             Name
-            <input name="name" type="text" value="A Name" required>
+            <input name="name" type="text" value="A Name">
         </label>
         <label>
             Email
-            <input name="email" type="email" value="email@here.com" required>
+            <input name="email" type="email" value="email@here.com">
         </label>
         <input type="submit" value="Submit">
     </form>

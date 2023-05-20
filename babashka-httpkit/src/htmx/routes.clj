@@ -134,6 +134,6 @@
 
       [:get ["update-other-content"]] {:body (sidebar> update-other-content/main-page)}
       [:get ["update-other-content" "solution" i]] {:body (sidebar> update-other-content/solution partial-req? i)}
-      [:post ["update-other-content" "solution" i "contacts"]] {:body (update-other-content/add-contact {:i (str "solution-" i) :req req})}
+      [:post ["update-other-content" "solution" i "contacts"]] {:body (update-other-content/add-contact {:i i :req req})}
 
       :else {:status 404 :body "htmx example not found here"})))

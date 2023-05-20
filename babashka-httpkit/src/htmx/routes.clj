@@ -29,6 +29,7 @@
             [htmx.19-tabs-hyperscript.api :refer [tab-contents
                                                   tabs-hyperscript-page]]
             [htmx.21-sortable.api :refer [items sortable-page]]
+            [htmx.22-update-other-content.api :as update-other-content]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -130,5 +131,9 @@
 
       [:get ["sortable"]] {:body (sidebar> sortable-page)}
       [:post ["items"]] {:body (items req)}
+
+      [:get ["update-other-content"]] {:body (sidebar> update-other-content/main-page)}
+      [:get ["update-other-content" "solution" i]] {:body (sidebar> update-other-content/solution partial-req? i)}
+      [:post ["update-other-content" "solution" i "contacts"]] {:body (update-other-content/add-contact {:i (str "solution-" i) :req req})}
 
       :else {:status 404 :body "htmx example not found here"})))

@@ -252,6 +252,8 @@ img {
 
 .one-tab {
     padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     margin: 1rem;
     background-color: #57858d;
     color: white;

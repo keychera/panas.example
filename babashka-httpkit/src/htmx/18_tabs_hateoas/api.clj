@@ -13,7 +13,7 @@
 (defn tabs [i]
   (str (html [:div.tab-list
               (for [n [1 2 3]]
-                [:a {:class (str/join "" ["one-tab"
+                [:a {:class (str/join " " ["one-tab"
                                           (when (= i n) "selected")])
                      :hx-get (str "/htmx/tab" n)}
                  (str "Tab " n)])]

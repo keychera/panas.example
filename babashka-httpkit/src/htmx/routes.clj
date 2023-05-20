@@ -24,22 +24,30 @@
                                                  modal-bootstrap-page]]
             [htmx.17-modal-custom.api :refer [custom-modal modal-custom-page]]
             [htmx.18-tabs-hateoas.api :refer [tabs tabs-hateoas-page]]
+            [htmx.19-5-tabs-like-these.api :refer [tab-like-this
+                                                   tabs-like-these]]
+            [htmx.19-tabs-hyperscript.api :refer [tab-contents
+                                                  tabs-hyperscript-page]]
+            [htmx.21-sortable.api :refer [items sortable-page]]
+            [htmx.22-update-other-content.api :as update-other-content]
+            [htmx.23-confirm.api :refer [confirm-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
   (render-file "htmx/index.html" {:render-main main-div}))
 
-(defn part? [req] (get-in req [:headers "hx-request"]))
+(defn partial? [req] (get-in req [:headers "hx-request"]))
 
-(defn sidebar-route [partial? handler & args]
-  (if partial?
+(defn sidebar-route [partial-req? handler & args]
+  (if partial-req?
     (apply handler args)
     (htmx-index (apply handler args))))
 
 ;; this is router under /htmx
 (defn router [req action]
   (let [verb (:request-method req)
-        sidebar> (partial sidebar-route (part? req))]
+        partial-req? (partial? req)
+        sidebar> (partial sidebar-route partial-req?)]
     (match [verb action]
       [:get []] {:body (htmx-index nil)}
 
@@ -110,5 +118,29 @@
       [:get ["tab2"]] {:body (tabs 2)}
       [:get ["tab3"]] {:body (tabs 3)}
 
+      [:get ["tabs-hyperscript"]] {:body (sidebar> tabs-hyperscript-page)}
+
+      [:get ["tabc1"]] {:body (tab-contents 1)}
+      [:get ["tabc2"]] {:body (tab-contents 2)}
+      [:get ["tabc3"]] {:body (tab-contents 3)}
+
+      [:get ["tabs-like-these"]] {:body (sidebar> tabs-like-these)}
+      [:get ["tab-like-this" i]] {:body (sidebar> tab-like-this partial-req? i)}
+
+      [:get ["keyboard-shortcuts"]] {:body (sidebar> render-file "htmx/20_keyboard_shortcuts/keyboard-shortcuts-page.html" {})}
+      [:post ["doit"]] {:body "Did it!"}
+
+      [:get ["sortable"]] {:body (sidebar> sortable-page)}
+      [:post ["items"]] {:body (items req)}
+
+      [:get ["update-other-content"]] {:body (sidebar> update-other-content/main-page)}
+      [:get ["update-other-content" "solution" i]] {:body (sidebar> update-other-content/solution partial-req? i)}
+      ;; this one does not return as {:body ...} because update-other-content/add-contact already returns a :body map
+      ;; an inconsistency, because here we have the need to return something via headers as well, maybe everything else should be this way instead
+      [:post ["update-other-content" "solution" i "contacts"]] (update-other-content/add-contact {:i i :req req})
+      [:get ["update-other-content" "contacts-table"]] {:body (update-other-content/contacts-table)}
+
+      [:get ["confirm"]] {:body (sidebar> confirm-page)}
+      [:get ["confirmed"]] {:body "Confirmed"}
 
       :else {:status 404 :body "htmx example not found here"})))

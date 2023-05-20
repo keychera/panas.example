@@ -1,0 +1,25 @@
+<h2>Contacts (solution 4)</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="contacts-table" hx-get="/htmx/update-other-content/contacts-table"
+           hx-trigger="load, path-deps" path-deps="/htmx/update-other-content/solution/4/contacts">
+    </tbody>
+</table>
+<h2>Add A Contact</h2>
+<form hx-post="/htmx/update-other-content/solution/4/contacts">
+    <label>
+        Name
+        <input name="name" type="text" value="A Name">
+    </label>
+    <label>
+        Email
+        <input name="email" type="email" value="email@here.com">
+    </label>
+    <input type="submit" value="Submit">
+</form>

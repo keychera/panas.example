@@ -1,0 +1,15 @@
+<p class="grayed">
+	pretty much like the hyperscript one, but it will also push currently selected tab to the url.
+	The clojure part make it so that if you refresh the page, it will stay at the same tab.
+</p>
+
+
+<div id="tabs" class="tab-list"
+	 hx-target="#tab-contents" hx-push-url="true"
+	 _="on htmx:afterOnLoad take .selected for event.target">
+	<a hx-get="/htmx/tab-like-this/1" class="one-tab {% if i = 1 %} selected {% endif %}">Tab 1</a>
+	<a hx-get="/htmx/tab-like-this/2" class="one-tab {% if i = 2 %} selected {% endif %}">Tab 2</a>
+	<a hx-get="/htmx/tab-like-this/3" class="one-tab {% if i = 3 %} selected {% endif %}">Tab 3</a>
+</div>
+
+<div id="tab-contents" hx-get="/htmx/tab-like-this/{{i}}" hx-trigger="load"></div>

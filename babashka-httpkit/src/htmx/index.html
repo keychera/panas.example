@@ -13,7 +13,9 @@
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
     <script src="https://unpkg.com/hyperscript.org@0.9.8"></script>
     <script src="https://unpkg.com/htmx.org@1.9.2/dist/ext/class-tools.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.2/dist/ext/path-deps.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </head>
 
 <body>
@@ -22,36 +24,49 @@
             <h1><a href="/htmx">this is babashka + htmx</a></h1>
         </div>
         <aside class="sidebar">
-            <div class="sidebar">
-                <button hx-get="/htmx/click-to-edit" hx-target="#main-body" hx-push-url="true">Click To Edit</button>
-                <button hx-get="/htmx/bulk-edit" hx-target="#main-body" hx-push-url="true">Bulk Update</button>
-                <button hx-get="/htmx/click-to-load" hx-target="#main-body" hx-push-url="true">Click To Load</button>
-                <button hx-get="/htmx/delete-row" hx-target="#main-body" hx-push-url="true">Delete Row</button>
-                <button hx-get="/htmx/edit-rows" hx-target="#main-body" hx-push-url="true">Edit Row</button>
-                <button hx-get="/htmx/lazy-loading" hx-target="#main-body" hx-push-url="true">Lazy Loading</button>
-                <button hx-get="/htmx/inline-validation" hx-target="#main-body" hx-push-url="true">Inline Validation</button>
-                <button hx-get="/htmx/infinite-scroll" hx-target="#main-body" hx-push-url="true">Infinite Scroll</button>
-                <button hx-get="/htmx/active-search" hx-target="#main-body" hx-push-url="true">Active Search</button>
-                <button hx-get="/htmx/progress-bar" hx-target="#main-body" hx-push-url="true">Progress Bar</button>
-                <button hx-get="/htmx/value-select" hx-target="#main-body" hx-push-url="true">Value Select</button>
-                <button hx-get="/htmx/animations" hx-target="#main-body" hx-push-url="true">Animations</button>
-                <button hx-get="/htmx/file-upload" hx-target="#main-body" hx-push-url="true">File Upload</button>
-                <button hx-get="/htmx/dialogs" hx-target="#main-body" hx-push-url="true">Dialogs - Browser</button>
-                <button hx-get="/htmx/modal-uikit" hx-target="#main-body" hx-push-url="true">Dialogs - UIKIt</button>
-                <button hx-get="/htmx/modal-boostrap" hx-target="#main-body" hx-push-url="true">Dialogs - Bootstrap</button>
-                <button hx-get="/htmx/modal-custom" hx-target="#main-body" hx-push-url="true">Dialogs - Custom</button>
-                <button hx-get="/htmx/tabs-hateoas" hx-target="#main-body" hx-push-url="true">Tabs (Using HATEOAS)</button>
-                <button disabled>Tabs (Using Hyperscript)</button>
-                <button disabled>Keyboard Shortcuts</button>
-                <button disabled>Sortable</button>
-                <button disabled>Updating Other Content</button>
-                <button disabled>Confirm</button>
+            <div class="sidebar" hx-target="#main-body" hx-push-url="true">
+                <button hx-get="/htmx/click-to-edit">Click To Edit</button>
+                <button hx-get="/htmx/bulk-edit">Bulk Update</button>
+                <button hx-get="/htmx/click-to-load">Click To Load</button>
+                <button hx-get="/htmx/delete-row">Delete Row</button>
+                <button hx-get="/htmx/edit-rows">Edit Row</button>
+                <button hx-get="/htmx/lazy-loading">Lazy Loading</button>
+                <button hx-get="/htmx/inline-validation">Inline Validation</button>
+                <button hx-get="/htmx/infinite-scroll">Infinite Scroll</button>
+                <button hx-get="/htmx/active-search">Active Search</button>
+                <button hx-get="/htmx/progress-bar">Progress Bar</button>
+                <button hx-get="/htmx/value-select">Value Select</button>
+                <button hx-get="/htmx/animations">Animations</button>
+                <button hx-get="/htmx/file-upload">File Upload</button>
+                <button hx-get="/htmx/dialogs">Dialogs - Browser</button>
+                <button hx-get="/htmx/modal-uikit">Dialogs - UIKIt</button>
+                <button hx-get="/htmx/modal-boostrap">Dialogs - Bootstrap</button>
+                <button hx-get="/htmx/modal-custom">Dialogs - Custom</button>
+                <button hx-get="/htmx/tabs-hateoas">Tabs (Using HATEOAS)</button>
+                <button hx-get="/htmx/tabs-hyperscript">Tabs (Using Hyperscript)</button>
+                <button hx-get="/htmx/tabs-like-these">or Tabs like these...</button>
+                <button hx-get="/htmx/keyboard-shortcuts">Keyboard Shortcuts</button>
+                <button hx-get="/htmx/sortable">Sortable</button>
+                <button hx-get="/htmx/update-other-content">Updating Other Content</button>
+                <button hx-get="/htmx/confirm">Confirm</button>
             </div>
             <div class="collapse-button" onclick="toggleCollapse()">
                 <button>></button>
             </div>
         </aside>
-        <div id="main-body" hx-ext="class-tools">
+        <script>
+            function initSortable() {
+                var sortables = document.querySelectorAll(".sortable");
+                for (var i = 0; i < sortables.length; i++) {
+                    var sortable = sortables[i];
+                    new Sortable(sortable, {
+                        animation: 150,
+                        ghostClass: 'blue-background-class'
+                    });
+                }
+            }
+        </script>
+        <div id="main-body" hx-ext="path-deps">
             {% if render-main %}
             {{render-main|safe}}
             {% else %}
@@ -64,6 +79,7 @@
 
 </body>
 <script>
+    htmx.config.useTemplateFragments = true;
     function toggleCollapse() {
         htmx.toggleClass(htmx.find("aside.sidebar"), "collapsed")
     }

@@ -1,0 +1,36 @@
+<h2>Contacts (solution 2)</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="contacts-table">
+        {% if length = 0 %}
+        <tr>
+            <td class="grayed">No entry yet...</td>
+        </tr>
+        {% else %}
+        {% for contact in contacts %}
+        <tr>
+            <td>{{contact.name}}</td>
+            <td>{{contact.email}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+<h2>Add A Contact</h2>
+<form hx-post="/htmx/update-other-content/solution/2/contacts">
+    <label>
+        Name
+        <input name="name" type="text" value="A Name" >
+    </label>
+    <label>
+        Email
+        <input name="email" type="email" value="email@here.com">
+    </label>
+    <input type="submit" value="Submit">
+</form>

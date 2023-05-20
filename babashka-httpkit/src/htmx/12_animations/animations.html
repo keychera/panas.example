@@ -62,19 +62,29 @@
     <div class="divider"></div>
 
     <h4 id="class-tools-demo">Using the htmx class-tools Extension</h4>
-    <p class="grayed">not attempted yet since previously we had issues with htmx/class-tools</p>
+    <style>
+        .demo.faded {
+            opacity: .3;
+        }
+
+        .demo {
+            opacity: 1;
+            transition: opacity ease-in 900ms;
+        }
+    </style>
+    <div class="demo" hx-ext="class-tools" classes="toggle faded:1s">Toggle Demo</div>
 
     <div class="divider"></div>
 
     <h4 id="view-transitions-demo">View Transition</h4>
     <p class="grayed">need chrome ver 111+, htmx 1.9.+</p>
-    
-     <div class="slide-it">
+
+    <div class="slide-it">
         <h4>Initial Content</h4>
         <button hx-get="/htmx/new-content" hx-swap="innerHTML transition:true" hx-target="closest div">
-          Swap It!
+            Swap It!
         </button>
-     </div>
+    </div>
 
-     <div class="divider"></div>
+    <div class="divider"></div>
 </div>

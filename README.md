@@ -1,6 +1,6 @@
 # Examples that uses [`panas.reload`][1]
 
-Though this project has become where I experiment all sort of things with clojure(babashka) and htmx
+Initially these are examples for panas.reload, now this has become where I experiment all sort of things with clojure(babashka) and htmx
 
 
 ## How to use

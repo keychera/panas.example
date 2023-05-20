@@ -30,6 +30,7 @@
                                                   tabs-hyperscript-page]]
             [htmx.21-sortable.api :refer [items sortable-page]]
             [htmx.22-update-other-content.api :as update-other-content]
+            [htmx.23-confirm.api :refer [confirm-page]]
             [selmer.parser :refer [render-file]]))
 
 (defn htmx-index [main-div]
@@ -138,5 +139,8 @@
       ;; an inconsistency, because here we have the need to return something via headers as well, maybe everything else should be this way instead
       [:post ["update-other-content" "solution" i "contacts"]] (update-other-content/add-contact {:i i :req req})
       [:get ["update-other-content" "contacts-table"]] {:body (update-other-content/contacts-table)}
+
+      [:get ["confirm"]] {:body (sidebar> confirm-page)}
+      [:get ["confirmed"]] {:body "Confirmed"}
 
       :else {:status 404 :body "htmx example not found here"})))

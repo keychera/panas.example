@@ -135,6 +135,15 @@ img {
     transition: width .6s ease;
 }
 
+#restart-btn {
+    opacity: 0;
+}
+
+#restart-btn.show {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}
+
 /* 12 animations */
 
 @keyframes fade-in {

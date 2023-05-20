@@ -134,6 +134,9 @@
 
       [:get ["update-other-content"]] {:body (sidebar> update-other-content/main-page)}
       [:get ["update-other-content" "solution" i]] {:body (sidebar> update-other-content/solution partial-req? i)}
-      [:post ["update-other-content" "solution" i "contacts"]] {:body (update-other-content/add-contact {:i i :req req})}
+      ;; this one does not return as {:body ...} because update-other-content/add-contact already returns a :body map
+      ;; an inconsistency, because here we have the need to return something via headers as well, maybe everything else should be this way instead
+      [:post ["update-other-content" "solution" i "contacts"]] (update-other-content/add-contact {:i i :req req})
+      [:get ["update-other-content" "contacts-table"]] {:body (update-other-content/contacts-table)}
 
       :else {:status 404 :body "htmx example not found here"})))

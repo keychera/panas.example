@@ -21,7 +21,7 @@
 
 (defmulti add-contact #(->> % :i (str "solution-") keyword))
 
-(defmethod add-contact :solution-1 [{:keys [req]}]
+(defmethod add-contact :solution-1 [{:keys [i req]}]
   (let [{:strs [name email]} (payload->map req)]
     (swap! contacts conj {:name name :email email})
     {:body (str (html [:div#table-and-form
@@ -32,18 +32,18 @@
                          (for [{:keys [name email]} @contacts]
                            [:tr [:td name] [:td email]])]]
                        [:h2 "Add A Contact"]
-                       [:form {:hx-post "/htmx/update-other-content/solution/1/contacts"
+                       [:form {:hx-post (str "/htmx/update-other-content/solution/" i "/contacts")
                                :hx-target "#table-and-form"}
                         [:label "Name" [:input {:name "name" :type "text"}]]
                         [:label "Email" [:input {:name "email" :type "email"}]]
                         [:input {:type "submit" :value "Submit"}]]]))}))
 
-(defmethod add-contact :solution-2 [{:keys [req]}]
+(defmethod add-contact :solution-2 [{:keys [i req]}]
   (let [{:strs [name email]} (payload->map req)]
     (swap! contacts conj {:name name :email email})
     {:body (str (html [:tbody {:hx-swap-oob "beforeend:#contacts-table"}
                        [:tr [:td name] [:td email]]])
-                (html [:form {:hx-post "/htmx/update-other-content/solution/2/contacts"}
+                (html [:form {:hx-post (str "/htmx/update-other-content/solution/" i "/contacts")}
                        [:label "Name" [:input {:name "name" :type "text"}]]
                        [:label "Email" [:input {:name "email" :type "email"}]]
                        [:input {:type "submit" :value "Submit"}]]))}))
@@ -56,11 +56,11 @@
                    (html [:tr [:td name] [:td email]])))
       (str (html [:tr [:td.grayed "No entry yet..."]])))))
 
-(defmethod add-contact :solution-3 [{:keys [req]}]
+(defmethod add-contact :solution-3 [{:keys [i req]}]
   (let [{:strs [name email]} (payload->map req)]
     (swap! contacts conj {:name name :email email})
     {:headers {"HX-Trigger" "newContact"}
-     :body (str (html [:form {:hx-post "/htmx/update-other-content/solution/2/contacts"}
+     :body (str (html [:form {:hx-post (str "/htmx/update-other-content/solution/" i "/contacts")}
                        [:label "Name" [:input {:name "name" :type "text"}]]
                        [:label "Email" [:input {:name "email" :type "email"}]]
                        [:input {:type "submit" :value "Submit"}]]))}))

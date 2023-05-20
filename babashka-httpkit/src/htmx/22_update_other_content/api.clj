@@ -25,7 +25,7 @@
   (let [{:strs [name email]} (payload->map req)]
     (swap! contacts conj {:name name :email email})
     {:body (str (html [:div#table-and-form
-                       [:h2 "Contacts"]
+                       [:h2 (str "Contacts (solution " i ")")]
                        [:table.table
                         [:thead [:tr [:th "Name"] [:th "Email"] [:th]]]
                         [:tbody#contacts-table
@@ -61,6 +61,14 @@
     (swap! contacts conj {:name name :email email})
     {:headers {"HX-Trigger" "newContact"}
      :body (str (html [:form {:hx-post (str "/htmx/update-other-content/solution/" i "/contacts")}
+                       [:label "Name" [:input {:name "name" :type "text"}]]
+                       [:label "Email" [:input {:name "email" :type "email"}]]
+                       [:input {:type "submit" :value "Submit"}]]))}))
+
+(defmethod add-contact :solution-4 [{:keys [i req]}]
+  (let [{:strs [name email]} (payload->map req)]
+    (swap! contacts conj {:name name :email email})
+    {:body (str (html [:form {:hx-post (str "/htmx/update-other-content/solution/" i "/contacts")}
                        [:label "Name" [:input {:name "name" :type "text"}]]
                        [:label "Email" [:input {:name "email" :type "email"}]]
                        [:input {:type "submit" :value "Submit"}]]))}))

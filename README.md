@@ -2,6 +2,9 @@
 
 Initially these are examples for panas.reload, now this has become where I experiment all sort of things with clojure(babashka) and htmx
 
+## Prerequisite
+
+install [babashka](https://book.babashka.org/#_installation)
 
 ## How to use
 
@@ -9,11 +12,12 @@ Initially these are examples for panas.reload, now this has become where I exper
 bb --config <any-project-dir>/bb.edn panas.reload
 ```
 
-for example, running babashka
+for example, running the project `babashka-httpkit`
 
 ```
 bb --config babashka-httpkit/bb.edn panas.reload
 ```
+## What each project directory is
 
 `babashka-httpkit` is an example project that:
 - uses [sakuracss](https://github.com/oxalorg/sakura)

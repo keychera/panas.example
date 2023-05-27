@@ -6,6 +6,11 @@ Initially these are examples for panas.reload, now this has become where I exper
 
 install [babashka](https://book.babashka.org/#_installation)
 
+quick babashka installation
+```bash
+bash < <(curl -s https://raw.githubusercontent.com/babashka/babashka/master/install)
+```
+
 ## How to use
 
 ```
